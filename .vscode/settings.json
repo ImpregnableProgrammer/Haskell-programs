@@ -1,0 +1,11 @@
+{
+  // Added for the haskell-linter extension
+  "haskell.hlint.executablePath": "/root/.local/bin/hlint",
+  // For formatting haskell files
+  // The plugin for `ormolu` is installed by default with the hls
+  "haskell.formattingProvider": "ormolu",
+  // Suppress the installation of `stack`
+  "haskell.toolchain": {
+    "stack": null
+  }
+}
