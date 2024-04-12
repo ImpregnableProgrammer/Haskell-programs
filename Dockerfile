@@ -8,14 +8,14 @@ FROM debian:stable-slim
 # for the current directory on the host machine
 # WORKDIR /app
 # VOLUME /app
-# Copy programs into the CWD "/app" in the container
+# Copy programs into the CWD "/app" in the container - also unneeded for devcontainers
 # COPY ./programs .
-# Start installing GHCUp and necessary dependencies
+# Start installing GHCup and necessary dependencies
 # We'll use `cabal` instead of `stack` for the Haskell package management
 # Along with installing `ghc` for compiling Haskell files
-# GHCUp installation guide: 
+# GHCup installation guide: https://www.haskell.org/ghcup/install/
 # NOTE: Each `RUN` instruction creates a new (cached) image layer after launching temporary containers
-## to run the commands given, and then committing the result of each `RUN` command to a new image
+## to run the command given, and then committing the result of each `RUN` command to a new image
 ## layer! Anything written in the running container is discarded when the container is stopped and removed.
 # Docker image layers: https://docs.docker.com/build/guide/layers/
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -39,4 +39,4 @@ RUN . /root/.ghcup/env && cabal install hlint
 # Add the haskell executable directories to the PATH
 RUN echo "export PATH=/root/.local/bin:/root/.cabal/bin:/root/.ghcup/bin:${PATH}" >> ~/.bashrc
 
-## ADD ADDITIONAL CABAL-INSTALL COMMANDS (line 37) BELOW THIS COMMENT TO INSTALL MORE PACKAGES!! ##
+## ADD ADDITIONAL CABAL-INSTALL COMMANDS (like line 38) BELOW THIS COMMENT TO INSTALL MORE HASKELL PACKAGES!! ##
