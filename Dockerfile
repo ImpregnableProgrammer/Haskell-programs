@@ -1,6 +1,7 @@
-# Use the slim docker image
+# Use the slim Debian image
 # Dockerfile reference: https://docs.docker.com/reference/dockerfile/
 # Dockerfile best practices: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+# This creates around ~7GB Haskell devcontainer image
 FROM debian:stable-slim
 # Docker volumes reference: https://docs.docker.com/storage/volumes/
 # Create a mount point for external volumes to persist files on the host machine
@@ -35,8 +36,9 @@ RUN . /root/.ghcup/env && \
 # haskell language server (hls) reference: https://haskell-language-server.readthedocs.io/en/stable/what-is-hls.html
 # Install hls plugin packages using cabal-install!!
 # Install Haskell package `hlint` for use with the `haskell-linter` vscode extension
+# Use this as reference for installing more Haskell packages
 RUN . /root/.ghcup/env && cabal install hlint
 # Add the haskell executable directories to the PATH
 RUN echo "export PATH=/root/.local/bin:/root/.cabal/bin:/root/.ghcup/bin:${PATH}" >> ~/.bashrc
 
-## ADD ADDITIONAL CABAL-INSTALL COMMANDS (like line 38) BELOW THIS COMMENT TO INSTALL MORE HASKELL PACKAGES!! ##
+## ADD ADDITIONAL CABAL-INSTALL COMMANDS BELOW THIS COMMENT TO INSTALL MORE HASKELL PACKAGES!! ##
